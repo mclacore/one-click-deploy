@@ -29,12 +29,17 @@
    },
    {
     "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
-    "roleDefinitionId": "f58310d9-a9f6-439a-9e8d-f62e7b41a168",
+    "roleDefinitionId": "fa23ad8b-c56e-40d8-ac0c-ce449e1d2c64",
     "principalIdDisplayName": "nographpermstest"
    },
    {
     "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
-    "roleDefinitionId": "fa23ad8b-c56e-40d8-ac0c-ce449e1d2c64",
+    "roleDefinitionId": "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9",
+    "delegatedRoleDefinitionIds": [
+      "befefa01-2a29-4197-83a8-272ff33ce314",
+      "acdd72a7-3385-48ef-bd42-f606fba81ae7",
+      "7f951dda-4ed3-4680-a7ca-43fe172d538d"
+    ],
     "principalIdDisplayName": "nographpermstest"
    }
   ]
