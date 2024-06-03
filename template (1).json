@@ -25,22 +25,17 @@
    {
     "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
     "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c",
-    "principalIdDisplayName": "nographpermstest"
+    "principalIdDisplayName": "Massdriver Provisioner (Contributor)"
    },
    {
      "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
      "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
-     "principalIdDisplayName": "nographpermstest"
+     "principalIdDisplayName": "Massdriver Provisioner (Reader)"
    },
    {
     "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
     "roleDefinitionId": "fa23ad8b-c56e-40d8-ac0c-ce449e1d2c64",
-    "principalIdDisplayName": "nographpermstest"
-   },
-   {
-    "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
-    "roleDefinitionId": "f1a07417-d97a-45cb-824c-7a7467783830",
-    "principalIdDisplayName": "nographpermstest"
+    "principalIdDisplayName": "Massdriver Provisioner (Billing Reader)"
    },
    {
     "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
@@ -48,9 +43,13 @@
     "delegatedRoleDefinitionIds": [
       "befefa01-2a29-4197-83a8-272ff33ce314",
       "acdd72a7-3385-48ef-bd42-f606fba81ae7",
-      "7f951dda-4ed3-4680-a7ca-43fe172d538d"
+      "7f951dda-4ed3-4680-a7ca-43fe172d538d",
+      "ba92f5b4-2d11-453d-a403-e96b0029c9fe",
+      "2a2b9908-6ea1-4ae2-8e65-a410df84e7d1",
+      "5e0bd9bd-7b93-4f28-af87-19fc36ad61bd",
+      "b12aa53e-6015-4669-85d0-8515ebb3ae7f"
     ],
-    "principalIdDisplayName": "nographpermstest"
+    "principalIdDisplayName": "Massdriver Provisioner (User Access Administrator)"
    }
   ]
  },
