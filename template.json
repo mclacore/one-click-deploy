@@ -7,14 +7,14 @@
    "metadata": {
     "description": "Specify a unique name for your offer"
    },
-   "defaultValue": "foo"
+   "defaultValue": "Onboarding Test Massdriver"
   },
   "mspOfferDescription": {
    "type": "string",
    "metadata": {
     "description": "Name of the Managed Service Provider offering"
    },
-   "defaultValue": "ds"
+   "defaultValue": "Test Massdriver onboarding test"
   }
  },
  "variables": {
@@ -28,9 +28,9 @@
     "principalIdDisplayName": "Massdriver Provisioner (Contributor)"
    },
    {
-     "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
-     "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
-     "principalIdDisplayName": "Massdriver Provisioner (Reader)"
+    "principalId": "c8067f8d-7f4c-4c52-ba06-bde845c90a4d",
+    "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
+    "principalIdDisplayName": "Onboarding Test Reader"
    },
    {
     "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
