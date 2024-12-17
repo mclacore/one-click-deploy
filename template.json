@@ -1,130 +1,81 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/subscriptionDeploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "mspOfferName": {
-      "type": "string",
-      "metadata": {
-        "description": "Specify a unique name for your offer"
-      },
-      "defaultValue": "Onboarding Test Massdriver"
-    },
-    "mspOfferDescription": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the Managed Service Provider offering"
-      },
-      "defaultValue": "Test Massdriver onboarding test"
-    }
+ "$schema": "https://schema.management.azure.com/schemas/2019-08-01/subscriptionDeploymentTemplate.json#",
+ "contentVersion": "1.0.0.0",
+ "parameters": {
+  "mspOfferName": {
+   "type": "string",
+   "metadata": {
+    "description": "Specify a unique name for your offer"
+   },
+   "defaultValue": "Onboarding Test Massdriver"
   },
-  "variables": {
-    "mspRegistrationName": "[guid(parameters('mspOfferName'))]",
-    "mspAssignmentName": "[guid(parameters('mspOfferName'))]",
-    "managedByTenantId": "565f19fb-40ea-44d1-8ae8-9912a017ef09",
-    "authorizations": [
-      {
-        "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
-        "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c",
-        "principalIdDisplayName": "Massdriver Provisioner (Contributor)"
-      },
-      {
-        "principalId": "c8067f8d-7f4c-4c52-ba06-bde845c90a4d",
-        "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
-        "principalIdDisplayName": "Onboarding Test Reader"
-      },
-      {
-        "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
-        "roleDefinitionId": "fa23ad8b-c56e-40d8-ac0c-ce449e1d2c64",
-        "principalIdDisplayName": "Massdriver Provisioner (Billing Reader)"
-      },
-      {
-        "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
-        "roleDefinitionId": "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9",
-        "delegatedRoleDefinitionIds": [
-          "befefa01-2a29-4197-83a8-272ff33ce314",
-          "acdd72a7-3385-48ef-bd42-f606fba81ae7",
-          "7f951dda-4ed3-4680-a7ca-43fe172d538d",
-          "ba92f5b4-2d11-453d-a403-e96b0029c9fe",
-          "2a2b9908-6ea1-4ae2-8e65-a410df84e7d1",
-          "5e0bd9bd-7b93-4f28-af87-19fc36ad61bd",
-          "b12aa53e-6015-4669-85d0-8515ebb3ae7f"
-        ],
-        "principalIdDisplayName": "Massdriver Provisioner (User Access Administrator)"
-      }
-    ]
-  },
-  "resources": [
-    {
-      "type": "Microsoft.ManagedServices/registrationDefinitions",
-      "apiVersion": "2020-02-01-preview",
-      "name": "[variables('mspRegistrationName')]",
-      "properties": {
-        "registrationDefinitionName": "[parameters('mspOfferName')]",
-        "description": "[parameters('mspOfferDescription')]",
-        "managedByTenantId": "[variables('managedByTenantId')]",
-        "authorizations": "[variables('authorizations')]"
-      }
-    },
-    {
-      "type": "Microsoft.ManagedServices/registrationAssignments",
-      "apiVersion": "2020-02-01-preview",
-      "name": "[variables('mspAssignmentName')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.ManagedServices/registrationDefinitions/', variables('mspRegistrationName'))]"
-      ],
-      "properties": {
-        "registrationDefinitionId": "[resourceId('Microsoft.ManagedServices/registrationDefinitions/', variables('mspRegistrationName'))]",
-        "condition": {
-          "allOf": [
-            {
-              "anyOf": [
-                {
-                  "field": "action",
-                  "notEquals": "Microsoft.Authorization/roleAssignments/write"
-                },
-                {
-                  "field": "action",
-                  "notEquals": "Microsoft.Authorization/roleAssignments/delete"
-                }
-              ]
-            },
-            {
-              "allOf": [
-                {
-                  "field": "Microsoft.Authorization/roleAssignments:RoleDefinitionId",
-                  "in": [
-                    "befefa01-2a29-4197-83a8-272ff33ce314",
-                    "acdd72a7-3385-48ef-bd42-f606fba81ae7",
-                    "7f951dda-4ed3-4680-a7ca-43fe172d538d",
-                    "ba92f5b4-2d11-453d-a403-e96b0029c9fe",
-                    "2a2b9908-6ea1-4ae2-8e65-a410df84e7d1",
-                    "5e0bd9bd-7b93-4f28-af87-19fc36ad61bd",
-                    "b12aa53e-6015-4669-85d0-8515ebb3ae7f"
-                  ]
-                },
-                {
-                  "exists": true,
-                  "field": "Microsoft.Authorization/roleAssignments:DelegatedManagedIdentityResourceId"
-                },
-                {
-                  "field": "Microsoft.Authorization/roleAssignments:DelegatedManagedIdentityResourceId",
-                  "notEquals": ""
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  ],
-  "outputs": {
-    "mspOfferName": {
-      "type": "string",
-      "value": "[concat('Managed by', ' ', parameters('mspOfferName'))]"
-    },
-    "authorizations": {
-      "type": "array",
-      "value": "[variables('authorizations')]"
-    }
+  "mspOfferDescription": {
+   "type": "string",
+   "metadata": {
+    "description": "Name of the Managed Service Provider offering"
+   },
+   "defaultValue": "Test Massdriver onboarding test"
   }
+ },
+ "variables": {
+  "mspRegistrationName": "[guid(parameters('mspOfferName'))]",
+  "mspAssignmentName": "[guid(parameters('mspOfferName'))]",
+  "managedByTenantId": "565f19fb-40ea-44d1-8ae8-9912a017ef09",
+  "authorizations": [
+   {
+    "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
+    "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+    "principalIdDisplayName": "Massdriver Provisioner (Contributor)"
+   },
+   {
+    "principalId": "c8067f8d-7f4c-4c52-ba06-bde845c90a4d",
+    "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
+    "principalIdDisplayName": "Onboarding Test Reader"
+   },
+   {
+    "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
+    "roleDefinitionId": "fa23ad8b-c56e-40d8-ac0c-ce449e1d2c64",
+    "principalIdDisplayName": "Massdriver Provisioner (Billing Reader)"
+   },
+   {
+    "principalId": "fba94033-3836-49a7-aab1-560fafa968d2",
+    "roleDefinitionId": "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9",
+    "principalIdDisplayName": "Massdriver Provisioner (User Access Administrator)"
+   }
+  ]
+ },
+ "resources": [
+  {
+   "type": "Microsoft.ManagedServices/registrationDefinitions",
+   "apiVersion": "2020-02-01-preview",
+   "name": "[variables('mspRegistrationName')]",
+   "properties": {
+    "registrationDefinitionName": "[parameters('mspOfferName')]",
+    "description": "[parameters('mspOfferDescription')]",
+    "managedByTenantId": "[variables('managedByTenantId')]",
+    "authorizations": "[variables('authorizations')]"
+   }
+  },
+  {
+   "type": "Microsoft.ManagedServices/registrationAssignments",
+   "apiVersion": "2020-02-01-preview",
+   "name": "[variables('mspAssignmentName')]",
+   "dependsOn": [
+    "[resourceId('Microsoft.ManagedServices/registrationDefinitions/', variables('mspRegistrationName'))]"
+   ],
+   "properties": {
+    "registrationDefinitionId": "[resourceId('Microsoft.ManagedServices/registrationDefinitions/', variables('mspRegistrationName'))]"
+   }
+  }
+ ],
+ "outputs": {
+  "mspOfferName": {
+   "type": "string",
+   "value": "[concat('Managed by', ' ', parameters('mspOfferName'))]"
+  },
+  "authorizations": {
+   "type": "array",
+   "value": "[variables('authorizations')]"
+  }
+ }
 }
